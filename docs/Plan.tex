@@ -1,0 +1,53 @@
+\documentclass[12pt]{report}
+\usepackage{qtree}
+\usepackage[margin=1in]{geometry}
+\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+\title{Plan of Attack}
+\author{Chun Li \\ Weichen Zhou}
+\maketitle
+\section*{Summary}
+For this deliverable, we will complete the project in the following steps: \begin{enumerate}
+\item Draw the game board 
+\item Create the command interpreter
+\item Create the pieces 
+\item Implement all the basic moves of the pieces
+\item Implement all the advanced moves, i.e. castling, \textit{en passant}, promotion
+\item Implement the rudimentary level of AI for computer player
+\item Extend the game to include graphics
+\item Finish the advanced AIs
+\end{enumerate}
+We will try our best to adhere to the following schedule: 
+\begin{center}
+\begin{tabular}{p{2.5in}|p{2.5in}|p{1in}}
+\textbf{Due Date} & \textbf{Component} & \textbf{Assigned} \\ \hline
+November 21 (Wednesday) & UML \newline Plan of Attack & Weichen \\ \hline
+November 21 (Thursday) & Create \texttt{Board} & Chun \\ \hline
+November 22 (Friday) & Implement command interpreter & Chun \\ \hline
+November 23 (Sunday) & Implement moves for pieces & Weichen \\ \hline
+November 25 (Monday) & Testing & Weichen \\ \hline
+November 26 (Tuesday) & Level 1 AI & Weichen \\ \hline
+November 27 (Wednesday) & Graphics & Weichen \\ \hline
+November 28 (Thursday) & Level 2 AI & Chun \\ \hline
+November 29 (Friday) & Level 3 AI & Chun \\ \hline
+November 30 (Saturday) & Level 4 AI & Chun 
+\end{tabular}
+\end{center}
+In a nutshell, Weichen will be responsible for implementing all the moves for the pieces of chess, level 1 AI, and graphics, while Chun will be responsible for creating the \texttt{Board}, the command interpreter, and all the advanced AI. Both partners will be responsible for designing the program, although Weichen will be the one actually drawing the UML and writing the plan of attack out. 
+\section*{Questions}
+\begin{enumerate}
+\item \textbf{Chess programs usually come with a book of standard opening move sequences, which list accepted opening moves and responses to opponents’ moves, for the first dozen or so moves of the game. Although you are not required to support this, discuss how you would implement a book of standard openings if required.} 
+
+Assuming that we are following the book exactly, we will simply implement a tree of moves (the \texttt{Move} class in our program). For example, take the Ruy Lopez starting position tree, which would look something like this: 
+
+\Tree[.\texttt{e3 e4} [.\texttt{e6 e5} [.\texttt{g1 f3} [.\texttt{b8 c6} [.\texttt{f1 b5} [.\texttt{g8 f6} \texttt{b1 c3} \texttt{d2 d3} ] \texttt{d7 d6} \texttt{c6 d4} ]]]]]
+
+Assuming that white starts, the even-numbered level (starting with the zeroth) would be interpreted as white's move, and the old-numbered level would be interpreted as black's move. The three branches at end are the possible defenses that black can take (the Berlin defense, Steiniz defense, and Bird defense, respectively). In response to the Berlin defense, white can take the move \texttt{b1 c3} or \texttt{d2 d3}. Whenever we reach the end of a branch (an empty tree), we will know that we have depleted the possible moves that we can take. 
+\item \textbf{How would you implement a feature that would allow a player to undo his/her last move? What about an unlimited number of undos?}
+
+We will implement unlimited undo using a 2D array and a stacks of moves. The 2D array will be the board created after setup. Whenever a move is made, it will be pushed onto the stack. When a player decides to undo their last move, the topmost move will be popped from the stack, and the board will be created by applying all the moves from the stack. 
+\item \textbf{Variations on chess abound. For example, four-handed chess is a variant that is played by four players (search for it!). Outline the changes that would be necessary to make your program into a four-handed chess game.}
+
+Referring to UML, we currently have a \texttt{Board} ctor that accepts the rows and columns of a board as its parameters. We will use that to create a $14\times14$ board and block off the corners that will not be used. The basic rules for four-player chess is the same as that for two-player chess, but we would need to update the command interpreter so that it will recognize the existence of four different colours and players instead of just two.
+\end{enumerate}
+\end{document}

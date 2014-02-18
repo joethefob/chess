@@ -1,0 +1,23 @@
+﻿Schedule
+
+
+Tuesday: UML, Schedule, Questions
+Wednesday: finish all the .h files and all the necessary files
+Friday: setup/create initial board/default constructors
+Weekend: implement moves, play a game of chess
+Monday: scoring/resign
+Monday: testing 
+Tuesday: Level 1 AI
+Wednesday: Graphics
+Thursday: AI 
+Friday: AI
+
+
+Test each component after finishing them  
+
+
+Question:
+1. Chess programs usually come with a book of standard opening move sequences, which list accepted opening moves and responses to opponents’ moves, for the first dozen or so moves of the game. Although you are not required to support this, discuss how you would implement a book of standard openings if required. We will implement a tree of moves, assuming that we are going by the book completely, with no allowances for nuances. (Draw example of tree)
+2. How would you implement a feature that would allow a player to undo his/her last move? What about an unlimited number of undos? We will implement a stack of moves, so we will just push and pull from these stacks.
+3. Variations on chess abound. For example, four-handed chess is a variant that is played by four players (search for it!). Outline the changes that would be necessary to make your program into a four-handed chess game. We would make a 14 by 14 board, and we would update piece::islegal() for each piece
+

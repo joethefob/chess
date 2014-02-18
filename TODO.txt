@@ -1,0 +1,12 @@
+TODO List
+
+Still need to implement:
+way to check if a move results in the king being checked - done
+isLegal for king (castling) - done
+isLegal for pawn - done
+detecting check - done
+detecting checkmate
+detecting stalemate
+AI
+GUI Graphics
+scoring
